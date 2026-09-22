@@ -1,0 +1,20 @@
+name: TapToTalker
+options:
+  bundleIdPrefix: com.devcalapps
+  deploymentTarget:
+    iOS: "17.0"
+settings:
+  TARGETED_DEVICE_FAMILY: "2"
+targets:
+  TapToTalker:
+    type: application
+    platform: iOS
+    sources: [TapToTalker]
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.devcalapps.TapToTalker
+  TapToTalkerTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [TapToTalkerTests]
+    dependencies:
+      - target: TapToTalker
