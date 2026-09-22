@@ -35,6 +35,25 @@ xcodebuild \
 - Caregiver settings + optional PIN gate
 - Local JSON + Documents image persistence (no network)
 
+## Card artwork — OpenMoji
+
+Default card symbols use curated artwork from **[OpenMoji](https://openmoji.org)** ([openmoji/openmoji](https://github.com/hfg-gmuend/openmoji)), licensed under [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+
+Bundled credit files:
+
+- [`TapToTalker/Resources/OpenMoji-ATTRIBUTION.txt`](TapToTalker/Resources/OpenMoji-ATTRIBUTION.txt)
+- [`TapToTalker/Resources/OpenMoji-LICENSE.txt`](TapToTalker/Resources/OpenMoji-LICENSE.txt)
+
+The app also shows a short OpenMoji credit on the caregiver onboarding screen.
+
 ## Agent skills
 
-`.cursor/skills/` contains iOS craft, accessibility, SwiftUI Pro, and code-audit skills — keep them; do not delete.
+`.cursor/skills/` contains iOS craft, accessibility, SwiftUI Pro, code-audit, and related skills — keep them; do not delete.
+
+## Git workflow
+
+Work on a **feature branch**, open a **PR**, get **approval** and green **CI** (**Build & Test**), then **merge to `main`**. Do not commit or push directly to `main`.
+
+- Cursor rule: `.cursor/rules/feature-branch-pr.mdc`
+- Admin gate setup: [`.github/BRANCH_PROTECTION.md`](.github/BRANCH_PROTECTION.md)
+- CI workflow: [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
