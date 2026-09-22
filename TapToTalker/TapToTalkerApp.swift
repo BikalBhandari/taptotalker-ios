@@ -6,6 +6,10 @@ struct TapToTalkerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @State private var appModel = AppModel()
 
+    init() {
+        LaunchProbe.mark("TapToTalkerApp.init")
+    }
+
     var body: some Scene {
         WindowGroup {
             RootView()
@@ -15,13 +19,27 @@ struct TapToTalkerApp: App {
                 .statusBarHidden(true)
                 .persistentSystemOverlays(.hidden)
                 .onAppear {
-                    OrientationLock.lockLandscape()
+                    LaunchProbe.mark("WindowGroup.onAppear")
+                    // After first paint: disk settings + speech warm-up + orientation nudge.
+                    DispatchQueue.main.async {
+                        LaunchProbe.mark("first-frame callback")
+                        appModel.bootstrapAfterFirstFrame()
+                        OrientationLock.lockLandscape()
+                    }
                 }
         }
     }
 }
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
+        LaunchProbe.mark("AppDelegate.didFinishLaunching")
+        return true
+    }
+
     func application(
         _ application: UIApplication,
         supportedInterfaceOrientationsFor window: UIWindow?
@@ -39,10 +57,5 @@ enum OrientationLock {
 
         let prefs = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: .landscape)
         scene.requestGeometryUpdate(prefs) { _ in }
-
-        // Nudge any stuck portrait presentation after launch.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            scene.requestGeometryUpdate(prefs) { _ in }
-        }
     }
 }

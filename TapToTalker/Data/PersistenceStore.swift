@@ -28,29 +28,50 @@ final class PersistenceStore {
 
     private(set) var settings: AppSettings
     private(set) var overrides: [String: CustomCardOverride]
+    private var didLoadFromDisk = false
+    private var imageCache: [String: UIImage] = [:]
 
     private init() {
+        LaunchProbe.mark("PersistenceStore.init begin")
         let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         settingsURL = docs.appendingPathComponent("settings.json")
         overridesURL = docs.appendingPathComponent("custom-cards.json")
         imagesDirectory = docs.appendingPathComponent("CustomCardImages", isDirectory: true)
 
-        try? FileManager.default.createDirectory(at: imagesDirectory, withIntermediateDirectories: true)
+        // Paint first frame with defaults — disk I/O happens in `loadFromDiskIfNeeded()`.
+        settings = .default
+        overrides = [:]
+        LaunchProbe.mark("PersistenceStore.init end (defaults only)")
+    }
 
-        settings = Self.load(AppSettings.self, from: settingsURL, decoder: JSONDecoder()) ?? .default
-        overrides = Self.load([String: CustomCardOverride].self, from: overridesURL, decoder: JSONDecoder()) ?? [:]
+    /// Loads settings/custom cards after the first frame. Safe to call repeatedly.
+    @discardableResult
+    func loadFromDiskIfNeeded() -> Bool {
+        guard !didLoadFromDisk else { return false }
+        didLoadFromDisk = true
+        LaunchProbe.mark("PersistenceStore disk load begin")
+
+        try? FileManager.default.createDirectory(at: imagesDirectory, withIntermediateDirectories: true)
+        settings = Self.load(AppSettings.self, from: settingsURL, decoder: decoder) ?? .default
+        overrides = Self.load([String: CustomCardOverride].self, from: overridesURL, decoder: decoder) ?? [:]
+
+        LaunchProbe.mark("PersistenceStore disk load end")
+        return true
     }
 
     func updateSettings(_ update: (inout AppSettings) -> Void) {
+        loadFromDiskIfNeeded()
         update(&settings)
         save(settings, to: settingsURL)
     }
 
     func override(for cardID: String) -> CustomCardOverride? {
-        overrides[cardID]
+        loadFromDiskIfNeeded()
+        return overrides[cardID]
     }
 
     func saveOverride(cardID: String, label: String?, emoji: String?, imageData: Data?) {
+        loadFromDiskIfNeeded()
         var entry = overrides[cardID] ?? CustomCardOverride()
         if let label {
             let trimmed = label.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -65,25 +86,31 @@ final class PersistenceStore {
             let url = imagesDirectory.appendingPathComponent(fileName)
             try? imageData.write(to: url, options: .atomic)
             entry.imageFileName = fileName
+            imageCache[cardID] = UIImage(data: imageData)
         }
         overrides[cardID] = entry
         save(overrides, to: overridesURL)
     }
 
     func clearOverride(cardID: String) {
+        loadFromDiskIfNeeded()
         if let fileName = overrides[cardID]?.imageFileName {
             let url = imagesDirectory.appendingPathComponent(fileName)
             try? FileManager.default.removeItem(at: url)
         }
         overrides.removeValue(forKey: cardID)
+        imageCache.removeValue(forKey: cardID)
         save(overrides, to: overridesURL)
     }
 
     func image(for cardID: String) -> UIImage? {
+        if let cached = imageCache[cardID] { return cached }
+        loadFromDiskIfNeeded()
         guard let fileName = overrides[cardID]?.imageFileName else { return nil }
         let url = imagesDirectory.appendingPathComponent(fileName)
-        guard let data = try? Data(contentsOf: url) else { return nil }
-        return UIImage(data: data)
+        guard let data = try? Data(contentsOf: url), let image = UIImage(data: data) else { return nil }
+        imageCache[cardID] = image
+        return image
     }
 
     func displayLabel(for card: AACCard, cardMode: CardMode) -> String {

@@ -28,7 +28,7 @@ struct AACCardButton: View {
                     .foregroundStyle(Color(red: 0.12, green: 0.14, blue: 0.18))
             }
             .padding(16)
-            .frame(maxWidth: .infinity, minHeight: AACTheme.minCardHeight)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(tone.fill, in: RoundedRectangle(cornerRadius: AACTheme.cardCorner, style: .continuous))
             .overlay(
                 RoundedRectangle(cornerRadius: AACTheme.cardCorner, style: .continuous)

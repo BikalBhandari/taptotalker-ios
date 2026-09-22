@@ -7,13 +7,35 @@ import UIKit
 final class AppModel {
     var settings: AppSettings
     var overridesVersion: Int = 0
+    private(set) var didBootstrap = false
 
     private let store: PersistenceStore
 
     init(store: PersistenceStore? = nil) {
-        let resolved = store ?? PersistenceStore.shared
-        self.store = resolved
-        self.settings = resolved.settings
+        LaunchProbe.mark("AppModel.init begin")
+        // Avoid touching PersistenceStore.shared disk path during `@State` construction.
+        if let store {
+            self.store = store
+            self.settings = store.settings
+        } else {
+            self.store = PersistenceStore.shared
+            self.settings = .default
+        }
+        LaunchProbe.mark("AppModel.init end")
+    }
+
+    /// Call after the first board frame. Reloads caregiver settings without blocking launch.
+    func bootstrapAfterFirstFrame() {
+        guard !didBootstrap else { return }
+        didBootstrap = true
+        LaunchProbe.mark("AppModel.bootstrap begin")
+        let changed = store.loadFromDiskIfNeeded()
+        settings = store.settings
+        if changed {
+            overridesVersion += 1
+        }
+        LaunchProbe.mark("AppModel.bootstrap end")
+        SpeechService.shared.prepareInBackground()
     }
 
     var vocabularyMode: VocabularyMode {
@@ -56,12 +78,10 @@ final class AppModel {
         store.displayEmoji(for: card, cardMode: settings.cardMode)
     }
 
-    func customImage(for card: AACCard) -> Bool {
-        settings.cardMode.usesCustomContent && store.image(for: card.id) != nil
-    }
-
     func image(for cardID: String) -> UIImage? {
-        store.image(for: cardID)
+        // Default mode never needs custom images on the hot path.
+        guard settings.cardMode.usesCustomContent else { return nil }
+        return store.image(for: cardID)
     }
 
     func saveCardOverride(cardID: String, label: String?, emoji: String?, imageData: Data?) {

@@ -5,10 +5,16 @@ import Observation
 @MainActor
 final class CommunicationSession {
     private(set) var pathIDs: [String] = []
-    private let speech: SpeechService
+    private let injectedSpeech: SpeechService?
 
     init(speech: SpeechService? = nil) {
-        self.speech = speech ?? SpeechService.shared
+        // Do not touch SpeechService.shared here — keeps launch free of AVFoundation.
+        self.injectedSpeech = speech
+        LaunchProbe.mark("CommunicationSession.init")
+    }
+
+    private var speech: SpeechService {
+        injectedSpeech ?? SpeechService.shared
     }
 
     func reset() {

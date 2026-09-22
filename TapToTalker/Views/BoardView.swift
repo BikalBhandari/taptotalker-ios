@@ -11,20 +11,6 @@ struct BoardView: View {
     private var complete: Bool { session.isComplete(mode: mode) }
     private var phrase: String { session.phraseText(using: app) }
 
-    private var columns: [GridItem] {
-        // Prefer a wide landscape board: more columns when space allows.
-        let count: Int
-        switch mode {
-        case .simple:
-            count = min(max(options.count, 1), 5)
-        case .guided:
-            count = min(max(options.count, 1), 3)
-        case .intermediate, .advanced:
-            count = min(max(options.count, 1), options.count <= 4 ? options.count : 4)
-        }
-        return Array(repeating: GridItem(.flexible(), spacing: AACTheme.gridSpacing), count: max(count, 1))
-    }
-
     var body: some View {
         ZStack {
             AACTheme.boardBackground
@@ -46,57 +32,53 @@ struct BoardView: View {
         .accessibilityElement(children: .contain)
         .accessibilityLabel(options.isEmpty ? "Communication board" : "Communication board, \(options.count) choices")
         .onAppear {
+            LaunchProbe.mark("BoardView.onAppear (interactive board)")
             OrientationLock.lockLandscape()
         }
     }
 
     private var cardGrid: some View {
         GeometryReader { geo in
-            let landscape = geo.size.width > geo.size.height
-            let columnCount: Int = {
-                switch mode {
-                case .simple:
-                    return landscape ? min(options.count, 5) : min(options.count, 3)
-                case .guided:
-                    return min(options.count, 3)
-                case .intermediate, .advanced:
-                    if landscape {
-                        return min(max(options.count, 1), options.count <= 6 ? options.count : 4)
-                    }
-                    return min(max(options.count, 1), 2)
-                }
-            }()
-            let gridColumns = Array(
-                repeating: GridItem(.flexible(), spacing: AACTheme.gridSpacing),
-                count: max(columnCount, 1)
+            let inset = AACTheme.outerPadding
+            let available = CGSize(
+                width: max(geo.size.width - inset * 2, BoardLayout.minCardSide),
+                height: max(geo.size.height - inset * 2, BoardLayout.minCardSide)
             )
-            let rows = max(1, Int(ceil(Double(options.count) / Double(max(columnCount, 1)))))
-            let availableHeight = max(geo.size.height - 32, AACTheme.minCardHeight)
-            let rowHeight = max(
-                AACTheme.minCardHeight,
-                (availableHeight - CGFloat(rows - 1) * AACTheme.gridSpacing) / CGFloat(rows)
+            let plan = BoardLayout.plan(
+                cardCount: options.count,
+                in: available,
+                maxColumns: BoardLayout.maxColumns(for: mode, cardCount: options.count)
             )
+            let rows = BoardLayout.rows(from: options, columns: plan.columns)
 
-            LazyVGrid(columns: gridColumns, spacing: AACTheme.gridSpacing) {
-                ForEach(options) { card in
-                    AACCardButton(
-                        title: app.displayLabel(for: card),
-                        emoji: app.displayEmoji(for: card),
-                        tone: card.tone,
-                        image: app.cardMode.usesCustomContent ? app.image(for: card.id) : nil,
-                        isEditMode: app.cardMode == .edit,
-                        action: {
-                            session.select(card, app: app)
-                        },
-                        onEdit: app.cardMode == .edit ? { onEditCard(card) } : nil
-                    )
-                    .frame(minHeight: rowHeight)
-                    .id("\(card.id)-\(app.overridesVersion)-\(app.cardMode.rawValue)")
+            VStack(spacing: plan.spacing) {
+                ForEach(Array(rows.enumerated()), id: \.offset) { _, row in
+                    HStack(spacing: plan.spacing) {
+                        ForEach(row) { card in
+                            cardButton(for: card)
+                                .frame(width: plan.cardWidth, height: plan.cardHeight)
+                        }
+                    }
                 }
             }
-            .padding(AACTheme.outerPadding)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .padding(inset)
         }
+    }
+
+    private func cardButton(for card: AACCard) -> some View {
+        AACCardButton(
+            title: app.displayLabel(for: card),
+            emoji: app.displayEmoji(for: card),
+            tone: card.tone,
+            image: app.cardMode.usesCustomContent ? app.image(for: card.id) : nil,
+            isEditMode: app.cardMode == .edit,
+            action: {
+                session.select(card, app: app)
+            },
+            onEdit: app.cardMode == .edit ? { onEditCard(card) } : nil
+        )
+        .id("\(card.id)-\(app.overridesVersion)-\(app.cardMode.rawValue)")
     }
 
     /// Compact strip only while a phrase is in progress — keeps the board primary.
@@ -156,7 +138,6 @@ struct BoardView: View {
     }
 
     private var emptyFallback: some View {
-        // Should rarely appear; never show a blank white screen.
         VStack(spacing: 16) {
             Text("No cards to show")
                 .font(.title2.weight(.semibold))

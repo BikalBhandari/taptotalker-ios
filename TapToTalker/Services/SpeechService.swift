@@ -5,16 +5,20 @@ import Foundation
 final class SpeechService {
     static let shared = SpeechService()
 
-    private let synthesizer = AVSpeechSynthesizer()
+    /// Created lazily — `AVSpeechSynthesizer` init can be costly on first launch.
+    private var synthesizer: AVSpeechSynthesizer?
 
-    private init() {}
+    private init() {
+        LaunchProbe.mark("SpeechService.init (no synthesizer yet)")
+    }
 
     func speak(_ text: String) {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
 
-        if synthesizer.isSpeaking {
-            synthesizer.stopSpeaking(at: .immediate)
+        let synth = resolvedSynthesizer()
+        if synth.isSpeaking {
+            synth.stopSpeaking(at: .immediate)
         }
 
         let utterance = AVSpeechUtterance(string: trimmed)
@@ -28,10 +32,26 @@ final class SpeechService {
             utterance.voice = voice
         }
 
-        synthesizer.speak(utterance)
+        synth.speak(utterance)
     }
 
     func stop() {
-        synthesizer.stopSpeaking(at: .immediate)
+        synthesizer?.stopSpeaking(at: .immediate)
+    }
+
+    /// Optional warm-up after first frame so the first tap isn't the cold path.
+    func prepareInBackground() {
+        Task(priority: .utility) { @MainActor in
+            _ = resolvedSynthesizer()
+            LaunchProbe.mark("SpeechService.warmed")
+        }
+    }
+
+    private func resolvedSynthesizer() -> AVSpeechSynthesizer {
+        if let synthesizer { return synthesizer }
+        LaunchProbe.mark("SpeechService creating AVSpeechSynthesizer")
+        let created = AVSpeechSynthesizer()
+        synthesizer = created
+        return created
     }
 }
