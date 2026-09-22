@@ -37,4 +37,8 @@ xcodebuild \
 
 ## Agent skills
 
-`.cursor/skills/` contains iOS craft, accessibility, SwiftUI Pro, and code-audit skills — keep them; do not delete.
+`.cursor/skills/` contains iOS craft, accessibility, SwiftUI Pro, code-audit, and **github-triage** skills — keep them; do not delete.
+
+## Git workflow
+
+Work on a **feature branch**, open a **PR**, get **approval**, then **merge to `main`**. Do not commit or push directly to `main` (see `.cursor/rules/feature-branch-pr.mdc`).

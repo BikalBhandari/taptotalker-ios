@@ -34,6 +34,16 @@ final class AppModel {
 
     var hasPIN: Bool { settings.hasPIN }
 
+    var needsOnboarding: Bool { !settings.hasCompletedOnboarding }
+
+    var googleDriveSyncEnabled: Bool {
+        get { settings.googleDriveSyncEnabled }
+        set {
+            settings.googleDriveSyncEnabled = newValue
+            persistSettings()
+        }
+    }
+
     func validatePIN(_ attempt: String) -> Bool {
         settings.caregiverPIN == attempt
     }
@@ -45,6 +55,21 @@ final class AppModel {
 
     func clearPIN() {
         settings.caregiverPIN = ""
+        persistSettings()
+    }
+
+    func completeOnboarding(
+        vocabularyMode: VocabularyMode,
+        pin: String,
+        googleDriveSyncEnabled: Bool
+    ) {
+        settings.vocabularyMode = vocabularyMode
+        settings.caregiverPIN = pin.trimmingCharacters(in: .whitespacesAndNewlines)
+        settings.googleDriveSyncEnabled = googleDriveSyncEnabled
+        if settings.cardMode == .default, store.overrides.isEmpty == false {
+            settings.cardMode = .custom
+        }
+        settings.hasCompletedOnboarding = true
         persistSettings()
     }
 
