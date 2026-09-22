@@ -19,7 +19,17 @@ struct CardEditorView: View {
             Form {
                 Section("Card") {
                     LabeledContent("Built-in") {
-                        Text("\(card.emoji)  \(card.label)")
+                        HStack(spacing: 8) {
+                            if let openMoji = OpenMoji.image(forEmoji: card.emoji) {
+                                Image(uiImage: openMoji)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 28, height: 28)
+                            } else {
+                                Text(card.emoji)
+                            }
+                            Text(card.label)
+                        }
                     }
                 }
 

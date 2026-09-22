@@ -11,7 +11,7 @@ struct CaregiverSettingsView: View {
         NavigationStack {
             Form {
                 Section {
-                    Text("Changes stay on this iPad. Nothing is uploaded.")
+                    Text("Changes stay on this iPad unless Google Drive sync is enabled later.")
                         .font(.callout)
                         .foregroundStyle(.secondary)
                 }
@@ -54,6 +54,22 @@ struct CaregiverSettingsView: View {
                     Text("Caregiver PIN")
                 } footer: {
                     Text("Optional. When a PIN is saved, opening Settings asks for it first. Clear the field and save to remove PIN protection.")
+                }
+
+                Section {
+                    Toggle(isOn: Binding(
+                        get: { app.googleDriveSyncEnabled },
+                        set: { app.googleDriveSyncEnabled = $0 }
+                    )) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Google Drive sync")
+                            Text("Coming soon — saves your preference for future backup.")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                } header: {
+                    Text("Backup")
                 }
             }
             .navigationTitle("Caregiver settings")

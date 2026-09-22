@@ -12,6 +12,12 @@ targets:
     sources: [TapToTalker]
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.devcalapps.TapToTalker
+      INFOPLIST_KEY_UIStatusBarHidden: YES
+      INFOPLIST_KEY_UILaunchScreen_Generation: NO
+      INFOPLIST_KEY_UIApplicationSceneManifest_Generation: NO
+      INFOPLIST_KEY_UIApplicationSupportsMultipleScenes: NO
+      INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+      INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
   TapToTalkerTests:
     type: bundle.unit-test
     platform: iOS

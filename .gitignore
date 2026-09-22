@@ -8,3 +8,13 @@ DerivedData/
 scripts-sync_project.py
 xcuserdata/
 *.xcuserdatad/
+
+# Agent / simulator debug captures
+.cursor/debug-*.png
+.cursor/debug-*.log
+.cursor/latest-sim-screen.png
+latest-sim-screen.png
+
+# Local Xcode / build caches
+.derivedData/
+TapToTalker.xcodeproj/project.xcworkspace/xcuserdata/

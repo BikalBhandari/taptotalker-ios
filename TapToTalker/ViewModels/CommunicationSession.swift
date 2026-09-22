@@ -89,15 +89,13 @@ final class CommunicationSession {
     }
 
     func visibleOptions(mode: VocabularyMode) -> [AACCard] {
-        let node = currentNode(mode: mode)
-        let options = node.options
-        guard let limit = mode.screenLimit else { return options }
-        // Simple/Guided: limit only on the home (step 1) for Simple's 5 home choices;
-        // Guided limits every screen to 6.
+        let options = currentNode(mode: mode).options
+        let hardMax = VocabularyMode.maxTilesPerScreen
+        // Simple: cap home to 5; deeper screens still never exceed 9.
         if mode == .simple && !pathIDs.isEmpty {
-            return options
+            return Array(options.prefix(hardMax))
         }
-        return Array(options.prefix(limit))
+        return Array(options.prefix(min(mode.screenLimit, hardMax)))
     }
 
     private func remainingDepthCapacity(mode: VocabularyMode) -> Int {

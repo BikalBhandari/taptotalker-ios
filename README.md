@@ -48,7 +48,7 @@ The app also shows a short OpenMoji credit on the caregiver onboarding screen.
 
 ## Agent skills
 
-`.cursor/skills/` contains iOS craft, accessibility, SwiftUI Pro, code-audit, and related skills — keep them; do not delete.
+`.cursor/skills/` contains iOS craft, accessibility, SwiftUI Pro, code-audit, and **github-triage** skills — keep them; do not delete.
 
 ## Git workflow
 

@@ -30,7 +30,7 @@ struct TapToTalkerTests {
         #expect(session.pathIDs == ["want"])
     }
 
-    @Test func advancedDetailRequiresAdvancedMode() {
+    @Test func advancedChickenDetails() {
         let chicken = DefaultVocabulary.root.options
             .first { $0.id == "want" }!
             .options.first { $0.id == "eat" }!
@@ -40,6 +40,54 @@ struct TapToTalkerTests {
         #expect(intermediate.options.isEmpty)
 
         let advanced = chicken.filtered(for: .advanced)
-        #expect(advanced.options.map(\.id) == ["nuggets", "strips", "warm", "cold"])
+        #expect(advanced.options.map(\.id) == ["nuggets", "strips", "chicken-sandwich", "wings"])
+    }
+
+    @Test func wantIncludesSleepAndPlay() {
+        let want = DefaultVocabulary.root.options.first { $0.id == "want" }!
+        #expect(want.options.map(\.id).contains("sleep"))
+        #expect(want.options.map(\.id).contains("play"))
+        #expect(!want.options.map(\.id).contains("rest"))
+    }
+
+    @Test func personIncludesFamilyMembers() {
+        let person = DefaultVocabulary.root.options.first { $0.id == "person" }!
+        #expect(person.options.count <= VocabularyMode.maxTilesPerScreen)
+        #expect(
+            person.options.prefix(6).map(\.id) == [
+                "mom", "dad", "brother", "sister", "grandma", "grandpa"
+            ]
+        )
+    }
+
+    @Test func noBoardExceedsNineTiles() {
+        func assertLimit(_ card: AACCard) {
+            #expect(card.options.count <= VocabularyMode.maxTilesPerScreen)
+            for child in card.options {
+                assertLimit(child)
+            }
+        }
+        #expect(DefaultVocabulary.root.options.count <= VocabularyMode.maxTilesPerScreen)
+        for card in DefaultVocabulary.root.options {
+            assertLimit(card)
+        }
+    }
+
+    @Test func notOkayHurtHasAdvancedDetails() {
+        let hurt = DefaultVocabulary.root.options
+            .first { $0.id == "not-okay" }!
+            .options.first { $0.id == "hurt" }!
+
+        #expect(hurt.filtered(for: .intermediate).options.isEmpty)
+        #expect(hurt.filtered(for: .advanced).options.map(\.id) == ["head", "tummy", "other"])
+    }
+
+    @Test func guidedPeopleShowsFamilyFirst() {
+        let app = AppModel()
+        let session = CommunicationSession()
+        let person = DefaultVocabulary.root.options.first { $0.id == "person" }!
+        session.select(person, app: app)
+        let visible = session.visibleOptions(mode: .guided)
+        #expect(visible.map(\.id) == ["mom", "dad", "brother", "sister", "grandma", "grandpa"])
     }
 }

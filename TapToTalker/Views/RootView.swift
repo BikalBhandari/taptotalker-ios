@@ -8,10 +8,22 @@ struct RootView: View {
     @State private var editingCard: AACCard?
 
     var body: some View {
+        ZStack {
+            if app.needsOnboarding {
+                OnboardingView()
+            } else {
+                mainBoard
+            }
+        }
+        .onAppear {
+            LandscapeLaunch.enforce(reason: "RootView.onAppear")
+        }
+        .animation(.easeInOut(duration: 0.25), value: app.needsOnboarding)
+    }
+
+    private var mainBoard: some View {
         NavigationStack {
             BoardView(session: session, onEditCard: { editingCard = $0 })
-                .navigationTitle("TapToTalker")
-                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button("Settings", systemImage: "gearshape.fill") {
@@ -24,10 +36,12 @@ struct RootView: View {
                         .accessibilityLabel("Caregiver settings")
                     }
                 }
-                .safeAreaInset(edge: .bottom) {
-                    modeChip
-                }
+                .toolbarBackground(AACTheme.boardBackground, for: .navigationBar)
+                .toolbarBackground(.visible, for: .navigationBar)
         }
+        .background(AACTheme.boardBackground.ignoresSafeArea())
+        .persistentSystemOverlays(.hidden)
+        .statusBarHidden(true)
         .sheet(isPresented: $showSettings) {
             CaregiverSettingsView()
         }
@@ -49,21 +63,5 @@ struct RootView: View {
         .onChange(of: app.vocabularyMode) { _, _ in
             session.reset()
         }
-    }
-
-    private var modeChip: some View {
-        HStack(spacing: 8) {
-            Label(app.vocabularyMode.title, systemImage: "text.book.closed")
-            Text("·")
-                .accessibilityHidden(true)
-            Text(app.cardMode.title)
-        }
-        .font(.subheadline.weight(.medium))
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
-        .background(.ultraThinMaterial, in: Capsule())
-        .padding(.bottom, 8)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("Vocabulary \(app.vocabularyMode.title), card mode \(app.cardMode.title)")
     }
 }
