@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build & Test
+    runs-on: macos-15
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Xcode
+        run: xcodebuild -version
+
+      - name: Resolve iPad Simulator destination
+        id: sim
+        run: |
+          set -euo pipefail
+          DEST=$(
+            xcodebuild -project TapToTalker.xcodeproj -scheme TapToTalker -showdestinations 2>/dev/null \
+              | sed -n 's/.*{ \(platform:iOS Simulator,.*name:iPad[^}]*\) }.*/\1/p' \
+              | head -1
+          )
+          if [ -z "${DEST}" ]; then
+            echo "No iPad Simulator destination found"
+            xcodebuild -project TapToTalker.xcodeproj -scheme TapToTalker -showdestinations || true
+            exit 1
+          fi
+          echo "destination=${DEST}" >> "$GITHUB_OUTPUT"
+          echo "Using destination: ${DEST}"
+
+      - name: Build and test
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project TapToTalker.xcodeproj \
+            -scheme TapToTalker \
+            -destination "${{ steps.sim.outputs.destination }}" \
+            codeCoverageEnabled=YES \
+            test

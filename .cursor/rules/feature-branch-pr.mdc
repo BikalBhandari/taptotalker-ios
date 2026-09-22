@@ -1,11 +1,11 @@
 ---
-description: All work goes on a feature branch, then PR approval, then merge to main — never commit on main
+description: All work goes on a feature branch, then PR approval + CI, then merge to main — never commit on main
 alwaysApply: true
 ---
 
 # Feature branch → PR → main
 
-Do **not** work on `main`. New changes ship only through an approved pull request.
+Do **not** work on `main`. New changes ship only through an approved pull request with green CI.
 
 ## Required flow
 
@@ -18,8 +18,10 @@ Do **not** work on `main`. New changes ship only through an approved pull reques
    ```
 2. **Commit only on the feature branch.**
 3. **Open a PR into `main`** (`gh pr create`). Do not push commits straight to `main`.
-4. **Wait for approval** (human review and/or required checks). Do not merge without approval when the user expects review.
-5. **Merge to `main`** only after approval (prefer squash or the repo’s default merge method). Delete the feature branch afterward when appropriate.
+4. **Wait for approval + CI**
+   - At least one approving review
+   - Required check **Build & Test** (`.github/workflows/ci.yml`) must pass
+5. **Merge to `main`** only after approval and green checks. Delete the feature branch afterward when appropriate.
 
 ## Agent must
 
@@ -27,6 +29,10 @@ Do **not** work on `main`. New changes ship only through an approved pull reques
 - Never `git push origin main` with new commits.
 - Never commit directly on `main` “just this once.”
 - When asked to implement something: branch first, then change files, then PR when asked to open one.
+
+## Admin setup
+
+Repo admins should enable the gate described in `.github/BRANCH_PROTECTION.md`.
 
 ## Exceptions
 
