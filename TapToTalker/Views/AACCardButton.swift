@@ -4,34 +4,35 @@ import UIKit
 struct AACCardButton: View {
     let title: String
     let emoji: String
+    let tone: CardTone
     let image: UIImage?
     let isEditMode: Bool
     let action: () -> Void
     let onEdit: (() -> Void)?
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @ScaledMetric(relativeTo: .largeTitle) private var emojiSize: CGFloat = 56
+    @ScaledMetric(relativeTo: .largeTitle) private var emojiSize: CGFloat = 64
 
     var body: some View {
         Button(action: action) {
             VStack(spacing: 12) {
                 visual
                     .frame(maxWidth: .infinity)
-                    .frame(minHeight: dynamicTypeSize.isAccessibilitySize ? 72 : 88)
+                    .frame(minHeight: dynamicTypeSize.isAccessibilitySize ? 72 : 96)
 
                 Text(title)
                     .font(.title2.weight(.semibold))
                     .multilineTextAlignment(.center)
                     .lineLimit(3)
                     .minimumScaleFactor(0.7)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(Color(red: 0.12, green: 0.14, blue: 0.18))
             }
             .padding(16)
             .frame(maxWidth: .infinity, minHeight: AACTheme.minCardHeight)
-            .background(AACTheme.cardBackground, in: RoundedRectangle(cornerRadius: AACTheme.cardCorner, style: .continuous))
+            .background(tone.fill, in: RoundedRectangle(cornerRadius: AACTheme.cardCorner, style: .continuous))
             .overlay(
                 RoundedRectangle(cornerRadius: AACTheme.cardCorner, style: .continuous)
-                    .strokeBorder(Color.primary.opacity(0.08), lineWidth: 1)
+                    .strokeBorder(tone.stroke, lineWidth: 1.5)
             )
         }
         .buttonStyle(.plain)

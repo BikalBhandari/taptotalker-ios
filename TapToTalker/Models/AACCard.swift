@@ -4,6 +4,7 @@ struct AACCard: Identifiable, Hashable, Sendable {
     let id: String
     let label: String
     let emoji: String
+    let tone: CardTone
     let prompt: String?
     let minMode: VocabularyMode?
     let options: [AACCard]
@@ -12,6 +13,7 @@ struct AACCard: Identifiable, Hashable, Sendable {
         id: String,
         label: String,
         emoji: String,
+        tone: CardTone? = nil,
         prompt: String? = nil,
         minMode: VocabularyMode? = nil,
         options: [AACCard] = []
@@ -19,6 +21,7 @@ struct AACCard: Identifiable, Hashable, Sendable {
         self.id = id
         self.label = label
         self.emoji = emoji
+        self.tone = tone ?? CardTone.inferred(for: id)
         self.prompt = prompt
         self.minMode = minMode
         self.options = options
@@ -36,6 +39,7 @@ struct AACCard: Identifiable, Hashable, Sendable {
             id: id,
             label: label,
             emoji: emoji,
+            tone: tone,
             prompt: prompt,
             minMode: minMode,
             options: options

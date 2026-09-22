@@ -7,68 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		374315F26A4946918AC96E09 /* TapToTalkerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0D2384B3B247BB9B55C72A /* TapToTalkerApp.swift */; };
-		395F07E6372248A8B21754BF /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C092F758F7A04C4EA25CEFA6 /* AppModel.swift */; };
-		47E1A4B5643745248D3485EA /* CommunicationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE635C8A00274857A9C797D7 /* CommunicationSession.swift */; };
-		89111261018944FF8726E073 /* AACCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E874686264BB285D04854 /* AACCard.swift */; };
-		DF63F639C27D4BB6BCAFFF1C /* CardMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8211AD81EB497F887EC01A /* CardMode.swift */; };
-		7A71CD2D3629403390C941AC /* VocabularyMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0913C581E70546F1A4027284 /* VocabularyMode.swift */; };
-		9979D28FDD004233B81C4AB9 /* AACTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310AB2828040445DA6D59A9A /* AACTheme.swift */; };
-		93884A0D44A9459682F3FF12 /* DefaultVocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB85B895621D4E99A8CCCF68 /* DefaultVocabulary.swift */; };
-		92CA7EF34D084E69BB993924 /* PersistenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF99AE16D8455A9F31923B /* PersistenceStore.swift */; };
-		948B0CE9680145D995421F01 /* AACCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D69C7F3E43542B98ECD8284 /* AACCardButton.swift */; };
-		99C89351EA3242F3A7E8AFE7 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679666A3F5C24A4C80A3E476 /* BoardView.swift */; };
-		4B2A70DE17AA494097CD2011 /* PhraseBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091F1C7C767C4B6EA7B2B05F /* PhraseBarView.swift */; };
-		14BDC262DF104B90A7CECAC9 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBDD9F702514226838B6CD6 /* RootView.swift */; };
-		C125BB83E86045559D6413AD /* CardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778D934D183946378D459FC5 /* CardEditorView.swift */; };
-		EBB281672FFA4738ADAE5687 /* CaregiverSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F1C4D232A4EB3B9F58BFD /* CaregiverSettingsView.swift */; };
-		B9DA27DE97774FC4B92565F3 /* PINEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D34A0F5FB7491EBB1BACBC /* PINEntryView.swift */; };
-		CF9CFCE9C446440E85783A21 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08943831375C4D75A97B9270 /* SpeechService.swift */; };
-		7865B1950E814241AE4E4710 /* TapToTalkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F888135404DF18015283B /* TapToTalkerTests.swift */; };
+		2A200EB48DB54CFE924F8A2F /* TapToTalkerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523D301B012746B69B50FD5B /* TapToTalkerApp.swift */; };
+		730044F77A7144599126E813 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870AA7F189A24FDE8020C03B /* AppModel.swift */; };
+		C4602899D80D43F5ACEE0A92 /* CommunicationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3E669ED64204CE58151F04F /* CommunicationSession.swift */; };
+		F35EB94233FC4D688CAA21CE /* AACCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9073182898AF4F66AB294F0F /* AACCard.swift */; };
+		CFA6CB5066A4474EA6A99283 /* CardMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E126471F22ED40A49C79CD4C /* CardMode.swift */; };
+		2C2F4DF9EAC448BC8F7D9BE6 /* VocabularyMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10A5E685BE943D082E8F631 /* VocabularyMode.swift */; };
+		C1F97374C8B7451E9E841DB8 /* AACTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379A97358A5448C5B5ADA57F /* AACTheme.swift */; };
+		54C4157618884326985DAFF1 /* DefaultVocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7DE7BACBB841D4BB50C3DE /* DefaultVocabulary.swift */; };
+		F6078BCABA634243BCD07EF2 /* PersistenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C137F3BA51874573803C8F99 /* PersistenceStore.swift */; };
+		B5895CCD59554A18974182C8 /* AACCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020C7C53DB5E4B39BAF7FBBC /* AACCardButton.swift */; };
+		987881BE836147758A248699 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96C766CD2104221BC17B33E /* BoardView.swift */; };
+		3600A36D5C20410EB12E552C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F829E8FB6CC44E84A0864DE0 /* RootView.swift */; };
+		7D5FC9960CA04E298039ECF2 /* CardEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518CC4E5B9A14BEB8A1F62D3 /* CardEditorView.swift */; };
+		C9D7B40BA25C447E9CC91AEE /* CaregiverSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B68E57FCA4C3CB1EB31D3 /* CaregiverSettingsView.swift */; };
+		A7E47218D7AA42DFBA80B93E /* PINEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DE0F73120C467186782A89 /* PINEntryView.swift */; };
+		EE0286D385984021A55577AF /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5352D9110F1F419C99D56EFC /* SpeechService.swift */; };
+		447A1268DB27453BA04E5F3C /* TapToTalkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F1002B13544FEC947DF24F /* TapToTalkerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		94927F4173574A36A13E759C /* PBXContainerItemProxy */ = {
+		178741390FF345A49C868171 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 73101D4B3CA742BBA9619602 /* Project object */;
+			containerPortal = 0DED909C16704CBA83FC012A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9D6D7BEB0DEA4BEFAB3AF54D;
+			remoteGlobalIDString = 5EE6BCE434E44A8289AD50D9;
 			remoteInfo = TapToTalker;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6A6CAE8868164D63A47C61A8 /* TapToTalker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TapToTalker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D4490E38DE8438681E6D871 /* TapToTalkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TapToTalkerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0B0D2384B3B247BB9B55C72A /* TapToTalkerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TapToTalkerApp.swift"; sourceTree = "<group>"; };
-		C092F758F7A04C4EA25CEFA6 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/AppModel.swift"; sourceTree = "<group>"; };
-		CE635C8A00274857A9C797D7 /* CommunicationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/CommunicationSession.swift"; sourceTree = "<group>"; };
-		D62E874686264BB285D04854 /* AACCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/AACCard.swift"; sourceTree = "<group>"; };
-		0B8211AD81EB497F887EC01A /* CardMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/CardMode.swift"; sourceTree = "<group>"; };
-		0913C581E70546F1A4027284 /* VocabularyMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/VocabularyMode.swift"; sourceTree = "<group>"; };
-		310AB2828040445DA6D59A9A /* AACTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme/AACTheme.swift"; sourceTree = "<group>"; };
-		FB85B895621D4E99A8CCCF68 /* DefaultVocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data/DefaultVocabulary.swift"; sourceTree = "<group>"; };
-		ECCF99AE16D8455A9F31923B /* PersistenceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data/PersistenceStore.swift"; sourceTree = "<group>"; };
-		7D69C7F3E43542B98ECD8284 /* AACCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/AACCardButton.swift"; sourceTree = "<group>"; };
-		679666A3F5C24A4C80A3E476 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/BoardView.swift"; sourceTree = "<group>"; };
-		091F1C7C767C4B6EA7B2B05F /* PhraseBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/PhraseBarView.swift"; sourceTree = "<group>"; };
-		ADBDD9F702514226838B6CD6 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/RootView.swift"; sourceTree = "<group>"; };
-		778D934D183946378D459FC5 /* CardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/CardEditorView.swift"; sourceTree = "<group>"; };
-		465F1C4D232A4EB3B9F58BFD /* CaregiverSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/CaregiverSettingsView.swift"; sourceTree = "<group>"; };
-		49D34A0F5FB7491EBB1BACBC /* PINEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/PINEntryView.swift"; sourceTree = "<group>"; };
-		08943831375C4D75A97B9270 /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/SpeechService.swift"; sourceTree = "<group>"; };
-		3C3F888135404DF18015283B /* TapToTalkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TapToTalkerTests.swift"; sourceTree = "<group>"; };
+		E0700DF920FA40E3B9B52B54 /* TapToTalker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TapToTalker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02E33AF693F4C868C5ABC43 /* TapToTalkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TapToTalkerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		523D301B012746B69B50FD5B /* TapToTalkerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TapToTalkerApp.swift"; sourceTree = "<group>"; };
+		870AA7F189A24FDE8020C03B /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/AppModel.swift"; sourceTree = "<group>"; };
+		E3E669ED64204CE58151F04F /* CommunicationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModels/CommunicationSession.swift"; sourceTree = "<group>"; };
+		9073182898AF4F66AB294F0F /* AACCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/AACCard.swift"; sourceTree = "<group>"; };
+		E126471F22ED40A49C79CD4C /* CardMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/CardMode.swift"; sourceTree = "<group>"; };
+		C10A5E685BE943D082E8F631 /* VocabularyMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/VocabularyMode.swift"; sourceTree = "<group>"; };
+		379A97358A5448C5B5ADA57F /* AACTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme/AACTheme.swift"; sourceTree = "<group>"; };
+		0A7DE7BACBB841D4BB50C3DE /* DefaultVocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data/DefaultVocabulary.swift"; sourceTree = "<group>"; };
+		C137F3BA51874573803C8F99 /* PersistenceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data/PersistenceStore.swift"; sourceTree = "<group>"; };
+		020C7C53DB5E4B39BAF7FBBC /* AACCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/AACCardButton.swift"; sourceTree = "<group>"; };
+		B96C766CD2104221BC17B33E /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/BoardView.swift"; sourceTree = "<group>"; };
+		F829E8FB6CC44E84A0864DE0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/RootView.swift"; sourceTree = "<group>"; };
+		518CC4E5B9A14BEB8A1F62D3 /* CardEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/CardEditorView.swift"; sourceTree = "<group>"; };
+		853B68E57FCA4C3CB1EB31D3 /* CaregiverSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/CaregiverSettingsView.swift"; sourceTree = "<group>"; };
+		E0DE0F73120C467186782A89 /* PINEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Views/Settings/PINEntryView.swift"; sourceTree = "<group>"; };
+		5352D9110F1F419C99D56EFC /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/SpeechService.swift"; sourceTree = "<group>"; };
+		56F1002B13544FEC947DF24F /* TapToTalkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TapToTalkerTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		ED5594F41AEC47FBB66F9D61 /* Frameworks */ = {
+		8212E1200CC4479F80C98FE8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 							);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4EC0F08C6E4C4D4A8387FE41 /* Frameworks */ = {
+		C2B8E00DD38C4295B74C211E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -78,52 +76,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		93F2B43DD8CE45989626B286 = {
+		42D9E9BBA7D24BDC976D4E90 = {
 			isa = PBXGroup;
 			children = (
-				BC14480EA1024DB2840A2422 /* TapToTalker */,
-				5D1AE387A3B749049643309C /* TapToTalkerTests */,
-				777A8DC2C0364303BBA539B4 /* Products */,
+				7CDCE4BD2C6949B899510A41 /* TapToTalker */,
+				4B22C65C52A44B06B4AFF70D /* TapToTalkerTests */,
+				008BD804813A408C9485E65A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		777A8DC2C0364303BBA539B4 /* Products */ = {
+		008BD804813A408C9485E65A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6A6CAE8868164D63A47C61A8 /* TapToTalker.app */,
-				4D4490E38DE8438681E6D871 /* TapToTalkerTests.xctest */,
+				E0700DF920FA40E3B9B52B54 /* TapToTalker.app */,
+				B02E33AF693F4C868C5ABC43 /* TapToTalkerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BC14480EA1024DB2840A2422 /* TapToTalker */ = {
+		7CDCE4BD2C6949B899510A41 /* TapToTalker */ = {
 			isa = PBXGroup;
 			children = (
-				0B0D2384B3B247BB9B55C72A /* TapToTalkerApp.swift */,
-				C092F758F7A04C4EA25CEFA6 /* AppModel.swift */,
-				CE635C8A00274857A9C797D7 /* CommunicationSession.swift */,
-				D62E874686264BB285D04854 /* AACCard.swift */,
-				0B8211AD81EB497F887EC01A /* CardMode.swift */,
-				0913C581E70546F1A4027284 /* VocabularyMode.swift */,
-				310AB2828040445DA6D59A9A /* AACTheme.swift */,
-				FB85B895621D4E99A8CCCF68 /* DefaultVocabulary.swift */,
-				ECCF99AE16D8455A9F31923B /* PersistenceStore.swift */,
-				7D69C7F3E43542B98ECD8284 /* AACCardButton.swift */,
-				679666A3F5C24A4C80A3E476 /* BoardView.swift */,
-				091F1C7C767C4B6EA7B2B05F /* PhraseBarView.swift */,
-				ADBDD9F702514226838B6CD6 /* RootView.swift */,
-				778D934D183946378D459FC5 /* CardEditorView.swift */,
-				465F1C4D232A4EB3B9F58BFD /* CaregiverSettingsView.swift */,
-				49D34A0F5FB7491EBB1BACBC /* PINEntryView.swift */,
-				08943831375C4D75A97B9270 /* SpeechService.swift */,
+				523D301B012746B69B50FD5B /* TapToTalkerApp.swift */,
+				870AA7F189A24FDE8020C03B /* AppModel.swift */,
+				E3E669ED64204CE58151F04F /* CommunicationSession.swift */,
+				9073182898AF4F66AB294F0F /* AACCard.swift */,
+				E126471F22ED40A49C79CD4C /* CardMode.swift */,
+				C10A5E685BE943D082E8F631 /* VocabularyMode.swift */,
+				379A97358A5448C5B5ADA57F /* AACTheme.swift */,
+				0A7DE7BACBB841D4BB50C3DE /* DefaultVocabulary.swift */,
+				C137F3BA51874573803C8F99 /* PersistenceStore.swift */,
+				020C7C53DB5E4B39BAF7FBBC /* AACCardButton.swift */,
+				B96C766CD2104221BC17B33E /* BoardView.swift */,
+				F829E8FB6CC44E84A0864DE0 /* RootView.swift */,
+				518CC4E5B9A14BEB8A1F62D3 /* CardEditorView.swift */,
+				853B68E57FCA4C3CB1EB31D3 /* CaregiverSettingsView.swift */,
+				E0DE0F73120C467186782A89 /* PINEntryView.swift */,
+				5352D9110F1F419C99D56EFC /* SpeechService.swift */,
 			);
 			path = TapToTalker;
 			sourceTree = "<group>";
 		};
-		5D1AE387A3B749049643309C /* TapToTalkerTests */ = {
+		4B22C65C52A44B06B4AFF70D /* TapToTalkerTests */ = {
 			isa = PBXGroup;
 			children = (
-				3C3F888135404DF18015283B /* TapToTalkerTests.swift */,
+				56F1002B13544FEC947DF24F /* TapToTalkerTests.swift */,
 			);
 			path = "TapToTalkerTests";
 			sourceTree = "<group>";
@@ -131,13 +128,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9D6D7BEB0DEA4BEFAB3AF54D /* TapToTalker */ = {
+		5EE6BCE434E44A8289AD50D9 /* TapToTalker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A12FDC5FDAB04F018F1C0FFC /* Build configuration list for PBXNativeTarget "TapToTalker" */;
+			buildConfigurationList = 499026A340C245B6AE960292 /* Build configuration list for PBXNativeTarget "TapToTalker" */;
 			buildPhases = (
-				BE1E23E6F1BC4077869644B6 /* Sources */,
-				ED5594F41AEC47FBB66F9D61 /* Frameworks */,
-				4C224E24F5124ECF802ECC37 /* Resources */,
+				92ADD781050D4F618999644C /* Sources */,
+				8212E1200CC4479F80C98FE8 /* Frameworks */,
+				8B380F1B23E54735AEBC3FF1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -147,46 +144,46 @@
 			packageProductDependencies = (
 			);
 			productName = TapToTalker;
-			productReference = 6A6CAE8868164D63A47C61A8 /* TapToTalker.app */;
+			productReference = E0700DF920FA40E3B9B52B54 /* TapToTalker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3EB05EB1F6B846ACACB5F6FE /* TapToTalkerTests */ = {
+		1B923536E30540B8983FB69E /* TapToTalkerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43936CA293E248C8BA9EC16D /* Build configuration list for PBXNativeTarget "TapToTalkerTests" */;
+			buildConfigurationList = 9C1DDA27A9B5446EBC10783F /* Build configuration list for PBXNativeTarget "TapToTalkerTests" */;
 			buildPhases = (
-				E891A2F3430F413982A77AF8 /* Sources */,
-				4EC0F08C6E4C4D4A8387FE41 /* Frameworks */,
-				921EA9A54785412292F8CF6C /* Resources */,
+				5096FC9105664EC891478F84 /* Sources */,
+				C2B8E00DD38C4295B74C211E /* Frameworks */,
+				DCFA59FFDBDB4B02B0796DDC /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				99F9BCDD71AD49DB97D452D3 /* PBXTargetDependency */,
+				73A96D0902074F5F874F08B5 /* PBXTargetDependency */,
 			);
 			name = "TapToTalkerTests";
 			productName = "TapToTalkerTests";
-			productReference = 4D4490E38DE8438681E6D871 /* TapToTalkerTests.xctest */;
+			productReference = B02E33AF693F4C868C5ABC43 /* TapToTalkerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		73101D4B3CA742BBA9619602 /* Project object */ = {
+		0DED909C16704CBA83FC012A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					9D6D7BEB0DEA4BEFAB3AF54D = {
+					5EE6BCE434E44A8289AD50D9 = {
 						CreatedOnToolsVersion = 16.0;
 					};
-					3EB05EB1F6B846ACACB5F6FE = {
+					1B923536E30540B8983FB69E = {
 						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 9D6D7BEB0DEA4BEFAB3AF54D;
+						TestTargetID = 5EE6BCE434E44A8289AD50D9;
 					};
 				};
 			};
-			buildConfigurationList = 197B4382FA454731BC2BA641 /* Build configuration list for PBXProject "TapToTalker" */;
+			buildConfigurationList = F9363D764BB3436288825107 /* Build configuration list for PBXProject "TapToTalker" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -194,21 +191,21 @@
 				en,
 				Base,
 			);
-			mainGroup = 93F2B43DD8CE45989626B286;
+			mainGroup = 42D9E9BBA7D24BDC976D4E90;
 			packageReferences = (
 			);
-			productRefGroup = 777A8DC2C0364303BBA539B4 /* Products */;
+			productRefGroup = 008BD804813A408C9485E65A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9D6D7BEB0DEA4BEFAB3AF54D /* TapToTalker */,
-				3EB05EB1F6B846ACACB5F6FE /* TapToTalkerTests */,
+				5EE6BCE434E44A8289AD50D9 /* TapToTalker */,
+				1B923536E30540B8983FB69E /* TapToTalkerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4C224E24F5124ECF802ECC37 /* Resources */ = {
+		8B380F1B23E54735AEBC3FF1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -216,7 +213,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		921EA9A54785412292F8CF6C /* Resources */ = {
+		DCFA59FFDBDB4B02B0796DDC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -226,50 +223,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BE1E23E6F1BC4077869644B6 /* Sources */ = {
+		92ADD781050D4F618999644C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				374315F26A4946918AC96E09 /* TapToTalkerApp.swift in Sources */,
-				395F07E6372248A8B21754BF /* AppModel.swift in Sources */,
-				47E1A4B5643745248D3485EA /* CommunicationSession.swift in Sources */,
-				89111261018944FF8726E073 /* AACCard.swift in Sources */,
-				DF63F639C27D4BB6BCAFFF1C /* CardMode.swift in Sources */,
-				7A71CD2D3629403390C941AC /* VocabularyMode.swift in Sources */,
-				9979D28FDD004233B81C4AB9 /* AACTheme.swift in Sources */,
-				93884A0D44A9459682F3FF12 /* DefaultVocabulary.swift in Sources */,
-				92CA7EF34D084E69BB993924 /* PersistenceStore.swift in Sources */,
-				948B0CE9680145D995421F01 /* AACCardButton.swift in Sources */,
-				99C89351EA3242F3A7E8AFE7 /* BoardView.swift in Sources */,
-				4B2A70DE17AA494097CD2011 /* PhraseBarView.swift in Sources */,
-				14BDC262DF104B90A7CECAC9 /* RootView.swift in Sources */,
-				C125BB83E86045559D6413AD /* CardEditorView.swift in Sources */,
-				EBB281672FFA4738ADAE5687 /* CaregiverSettingsView.swift in Sources */,
-				B9DA27DE97774FC4B92565F3 /* PINEntryView.swift in Sources */,
-				CF9CFCE9C446440E85783A21 /* SpeechService.swift in Sources */,
+				2A200EB48DB54CFE924F8A2F /* TapToTalkerApp.swift in Sources */,
+				730044F77A7144599126E813 /* AppModel.swift in Sources */,
+				C4602899D80D43F5ACEE0A92 /* CommunicationSession.swift in Sources */,
+				F35EB94233FC4D688CAA21CE /* AACCard.swift in Sources */,
+				CFA6CB5066A4474EA6A99283 /* CardMode.swift in Sources */,
+				2C2F4DF9EAC448BC8F7D9BE6 /* VocabularyMode.swift in Sources */,
+				C1F97374C8B7451E9E841DB8 /* AACTheme.swift in Sources */,
+				54C4157618884326985DAFF1 /* DefaultVocabulary.swift in Sources */,
+				F6078BCABA634243BCD07EF2 /* PersistenceStore.swift in Sources */,
+				B5895CCD59554A18974182C8 /* AACCardButton.swift in Sources */,
+				987881BE836147758A248699 /* BoardView.swift in Sources */,
+				3600A36D5C20410EB12E552C /* RootView.swift in Sources */,
+				7D5FC9960CA04E298039ECF2 /* CardEditorView.swift in Sources */,
+				C9D7B40BA25C447E9CC91AEE /* CaregiverSettingsView.swift in Sources */,
+				A7E47218D7AA42DFBA80B93E /* PINEntryView.swift in Sources */,
+				EE0286D385984021A55577AF /* SpeechService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E891A2F3430F413982A77AF8 /* Sources */ = {
+		5096FC9105664EC891478F84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7865B1950E814241AE4E4710 /* TapToTalkerTests.swift in Sources */,
+				447A1268DB27453BA04E5F3C /* TapToTalkerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		99F9BCDD71AD49DB97D452D3 /* PBXTargetDependency */ = {
+		73A96D0902074F5F874F08B5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9D6D7BEB0DEA4BEFAB3AF54D /* TapToTalker */;
-			targetProxy = 94927F4173574A36A13E759C /* PBXContainerItemProxy */;
+			target = 5EE6BCE434E44A8289AD50D9 /* TapToTalker */;
+			targetProxy = 178741390FF345A49C868171 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		D0A58624F1EC445FBCDD37EF /* Debug */ = {
+		34975AA93F2B41FD8A68EA7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -295,7 +291,7 @@
 			};
 			name = Debug;
 		};
-		0E9DD423F2B449EFA463DC7F /* Release */ = {
+		B21CB8D13EE945FD854E27D2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -313,7 +309,7 @@
 			};
 			name = Release;
 		};
-		C52E5CBFC1A442A6BE5038BF /* Debug */ = {
+		AC0986F37B35438B83436E0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -328,8 +324,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -344,7 +340,7 @@
 			};
 			name = Debug;
 		};
-		19FCB9BF3A4147E19C35C14B /* Release */ = {
+		7B7A6CD4290840928434F925 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -359,8 +355,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -375,7 +371,7 @@
 			};
 			name = Release;
 		};
-		6D21461F250D4CF39DAE7813 /* Debug */ = {
+		CDA1426566554964AC0FD713 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -393,7 +389,7 @@
 			};
 			name = Debug;
 		};
-		F2F2CAB11BD84AFBB3AD855E /* Release */ = {
+		7AB88FEEA12644F988A7EC82 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -414,29 +410,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		197B4382FA454731BC2BA641 /* Build configuration list for PBXProject "TapToTalker" */ = {
+		F9363D764BB3436288825107 /* Build configuration list for PBXProject "TapToTalker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D0A58624F1EC445FBCDD37EF /* Debug */,
-				0E9DD423F2B449EFA463DC7F /* Release */,
+				34975AA93F2B41FD8A68EA7E /* Debug */,
+				B21CB8D13EE945FD854E27D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A12FDC5FDAB04F018F1C0FFC /* Build configuration list for PBXNativeTarget "TapToTalker" */ = {
+		499026A340C245B6AE960292 /* Build configuration list for PBXNativeTarget "TapToTalker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C52E5CBFC1A442A6BE5038BF /* Debug */,
-				19FCB9BF3A4147E19C35C14B /* Release */,
+				AC0986F37B35438B83436E0A /* Debug */,
+				7B7A6CD4290840928434F925 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43936CA293E248C8BA9EC16D /* Build configuration list for PBXNativeTarget "TapToTalkerTests" */ = {
+		9C1DDA27A9B5446EBC10783F /* Build configuration list for PBXNativeTarget "TapToTalkerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6D21461F250D4CF39DAE7813 /* Debug */,
-				F2F2CAB11BD84AFBB3AD855E /* Release */,
+				CDA1426566554964AC0FD713 /* Debug */,
+				7AB88FEEA12644F988A7EC82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -445,5 +441,5 @@
 
 
 	};
-	rootObject = 73101D4B3CA742BBA9619602 /* Project object */;
+	rootObject = 0DED909C16704CBA83FC012A /* Project object */;
 }

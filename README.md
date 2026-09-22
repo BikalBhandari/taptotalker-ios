@@ -29,10 +29,12 @@ xcodebuild \
 ## What shipped in this slice
 
 - Tap AAC board with real starter vocabulary (I want to / I feel / I need / …)
-- Speak each card + Speak full phrase
+- Speak each card + Speak full phrase (minimal phrase strip while building)
+- Landscape-locked iPad layout for a wider board
+- Soft colorful cards by category; richer built-in emoji set
 - Vocabulary modes: **Simple** (5 home, ≤3 steps), **Intermediate** (full, ≤3), **Guided** (6/screen, ≤3), **Advanced** (detail cards, ≤4)
 - Card modes: **Default / Custom / Edit** (custom labels, emoji, local photos)
-- Caregiver settings + optional PIN gate
+- Caregiver settings (gear only chrome) + optional PIN gate
 - Local JSON + Documents image persistence (no network)
 
 ## Agent skills
