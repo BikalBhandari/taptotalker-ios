@@ -1,28 +1,43 @@
 import Foundation
 
 enum DefaultVocabulary {
+    /// Default AAC card symbols (Unicode). Bundled OpenMoji artwork is resolved from these at display time.
     static let emojiByID: [String: String] = [
-        "animal": "🐶", "angry": "😠", "answer": "✅", "apple": "🍎",
-        "bathroom": "🚽", "bed": "🛏️", "blanket": "🧣", "body": "🧍",
-        "break": "⏸️", "car": "🚗", "caregiver": "🤝", "chair": "🪑",
-        "chicken": "🍗", "confused": "❓", "cookies": "🍪", "dad": "👨",
-        "doctor": "🩺", "drawing": "🎨", "drink": "🥤", "eat": "🍽️",
-        "excited": "🤩", "feel": "🙂", "finished": "🏁", "food": "🍽️",
-        "friend": "🧑‍🤝‍🧑", "game": "🎮", "go": "📍", "happy": "😊",
-        "hear": "👂", "help": "🆘", "home": "🏠", "not-okay": "🙁",
-        "ice-cream": "🍨", "ice": "🧊", "juice": "🧃", "big": "➕",
-        "chocolate": "🍫", "cold": "🧊", "lights-off": "🌙", "loud": "🔊",
-        "maybe": "🤔", "medicine": "💊", "milk": "🥛", "mom": "👩",
-        "more": "➕", "music": "🎵", "need": "💬", "no": "👎",
-        "outside": "☀️", "pain": "🤕", "person": "🧍", "pizza": "🍕",
-        "play": "🎮", "quiet": "🤫", "read": "📖", "rest": "🛏️",
-        "sad": "😢", "sandwich": "🥪", "scared": "😟", "see": "👁️",
-        "sick": "🤒", "something-scary": "⚠️", "space": "🌬️", "stop": "🛑",
-        "strawberry": "🍓", "stuck": "🚫", "strips": "🍗", "talk": "💬",
-        "teacher": "👩‍🏫", "tired": "😴", "voice": "🗣️", "want": "❤️",
-        "warm-drink": "☕", "warm": "♨️", "water": "💧", "yes": "👍",
-        "nuggets": "🍗", "vanilla": "🍨", "small": "💧", "no-ice": "🚫",
-        "pillow": "🛏️"
+        // Starters
+        "want": "🙋", "feel": "😊", "need": "✋", "person": "👥",
+        "answer": "🆗", "not-okay": "😣", "see": "👀", "hear": "👂",
+        // Feelings
+        "happy": "😄", "sad": "😢", "angry": "😠", "scared": "😨",
+        "tired": "😴", "sick": "🤒", "excited": "🤩", "calm": "😌",
+        // People
+        "mom": "👩", "dad": "👨", "brother": "👦", "sister": "👧",
+        "grandma": "👵", "grandpa": "👴", "friend": "🫂", "teacher": "👩‍🏫",
+        "doctor": "🧑‍⚕️", "caregiver": "🤗",
+        // Food & drink
+        "eat": "🍎", "food": "🍎", "drink": "🥤", "cookies": "🍪",
+        "chicken": "🍗", "nuggets": "🍗", "strips": "🍗", "wings": "🍗",
+        "sandwich": "🥪", "chicken-sandwich": "🥪", "pizza": "🍕", "apple": "🍎",
+        "ice-cream": "🍦", "vanilla": "🍦", "chocolate": "🍫", "strawberry": "🍓",
+        "water": "💧", "juice": "🧃", "milk": "🥛", "warm-drink": "☕",
+        "ice": "🧊", "no-ice": "🚫", "small": "🔽", "big": "🔼",
+        // Places & sleep
+        "go": "🚶", "bathroom": "🚻", "outside": "🌳", "car": "🚗",
+        "home": "🏠", "chair": "🪑", "sleep": "😴", "bed": "🛏️",
+        "blanket": "🛏️", "pillow": "🛏️", "lights-off": "🌑",
+        "walk": "🚶", "park": "🏞️",
+        // Play & senses
+        "play": "🎲", "game": "🎮", "video-game": "🎮", "board-game": "🎲",
+        "ball": "⚽", "music": "🎵", "drawing": "🎨", "read": "📖",
+        "animal": "🐶", "quiet": "🤫", "voice": "🗣️", "loud": "📢",
+        "something-scary": "👻", "toy": "🧸", "screen": "📱",
+        "my-name": "📛", "tv": "📺",
+        // Needs & answers
+        "help": "🆘", "talk": "💬", "pain": "🤕", "hurt": "🤕",
+        "head": "🗣️", "tummy": "🤢", "other": "💪",
+        "stuck": "🧱", "break": "⏸️", "medicine": "💊", "hug": "🤗",
+        "yes": "👍", "no": "👎", "maybe": "🤷", "more": "➕",
+        "finished": "🏁", "stop": "🛑", "again": "🔁", "wait": "⏳",
+        "too-bright": "🔆"
     ]
 
     static func emoji(for id: String) -> String {
@@ -38,8 +53,8 @@ enum DefaultVocabulary {
                     card("chicken", "Chicken", options: [
                         card("nuggets", "Nuggets", minMode: .advanced),
                         card("strips", "Strips", minMode: .advanced),
-                        card("warm", "Warm", minMode: .advanced),
-                        card("cold", "Cold", minMode: .advanced)
+                        card("chicken-sandwich", "Sandwich", minMode: .advanced),
+                        card("wings", "Wings", minMode: .advanced)
                     ]),
                     card("sandwich", "Sandwich"),
                     card("pizza", "Pizza"),
@@ -61,7 +76,7 @@ enum DefaultVocabulary {
                     card("milk", "Milk"),
                     card("warm-drink", "Warm drink")
                 ]),
-                card("rest", "Rest", prompt: "Where do you want to rest?", options: [
+                card("sleep", "Sleep", prompt: "Where do you want to sleep?", options: [
                     card("bed", "Bed", options: [
                         card("blanket", "Blanket", minMode: .advanced),
                         card("pillow", "Pillow", minMode: .advanced),
@@ -72,14 +87,21 @@ enum DefaultVocabulary {
                     card("quiet", "Quiet room")
                 ]),
                 card("play", "Play", prompt: "What do you want to play?", options: [
-                    card("game", "Game"),
+                    card("game", "Game", options: [
+                        card("video-game", "Video game", minMode: .advanced),
+                        card("board-game", "Board game", minMode: .advanced),
+                        card("ball", "Ball", minMode: .advanced)
+                    ]),
                     card("music", "Music"),
                     card("drawing", "Drawing"),
                     card("read", "Read")
                 ]),
                 card("go", "Go to", prompt: "Where do you want to go?", options: [
                     card("bathroom", "Bathroom"),
-                    card("outside", "Outside"),
+                    card("outside", "Outside", options: [
+                        card("walk", "Walk", minMode: .advanced),
+                        card("park", "Park", minMode: .advanced)
+                    ]),
                     card("car", "Car"),
                     card("home", "Home")
                 ]),
@@ -97,31 +119,35 @@ enum DefaultVocabulary {
             ]),
             card("feel", "I feel", prompt: "How do you feel?", options: [
                 card("happy", "Happy"),
-                card("excited", "Excited"),
+                card("sad", "Sad"),
+                card("angry", "Angry"),
+                card("scared", "Scared"),
                 card("tired", "Tired"),
                 card("sick", "Sick"),
-                card("sad", "Sad"),
-                card("scared", "Scared"),
-                card("angry", "Angry"),
-                card("confused", "Confused")
+                card("excited", "Excited"),
+                card("calm", "Calm")
             ]),
             card("need", "I need", prompt: "What do you need?", options: [
                 card("water", "Water"),
                 card("food", "Food"),
-                card("help", "Help"),
                 card("bathroom", "Bathroom"),
+                card("help", "Help"),
                 card("break", "Break"),
+                card("hug", "Hug"),
                 card("medicine", "Medicine"),
-                card("blanket", "Blanket"),
-                card("space", "Space")
+                card("quiet", "Quiet")
             ]),
             card("person", "I want", prompt: "Who do you want?", options: [
                 card("mom", "Mom"),
                 card("dad", "Dad"),
+                card("brother", "Brother"),
+                card("sister", "Sister"),
+                card("grandma", "Grandma"),
+                card("grandpa", "Grandpa"),
                 card("friend", "Friend"),
                 card("teacher", "Teacher"),
-                card("doctor", "Doctor"),
-                card("caregiver", "Caregiver")
+                card("doctor", "Doctor")
+                // Caregiver stays under Get help → Talk (keeps this screen ≤ 9 tiles)
             ]),
             card("answer", "Answer", prompt: "Choose an answer", options: [
                 card("yes", "Yes"),
@@ -129,14 +155,20 @@ enum DefaultVocabulary {
                 card("maybe", "Maybe"),
                 card("more", "More"),
                 card("finished", "Finished"),
-                card("stop", "Stop")
+                card("stop", "Stop"),
+                card("again", "Again"),
+                card("wait", "Wait")
             ]),
             card("not-okay", "Not okay", prompt: "What is wrong?", options: [
+                card("hurt", "Hurt", options: [
+                    card("head", "Head", minMode: .advanced),
+                    card("tummy", "Tummy", minMode: .advanced),
+                    card("other", "Other", minMode: .advanced)
+                ]),
                 card("sick", "Sick"),
-                card("scared", "Scared"),
                 card("loud", "Too loud"),
-                card("tired", "Tired"),
-                card("body", "Body"),
+                card("too-bright", "Too bright"),
+                card("scared", "Scared"),
                 card("help", "Need help")
             ]),
             card("see", "I see", prompt: "What do you see?", options: [
@@ -144,14 +176,18 @@ enum DefaultVocabulary {
                 card("animal", "Animal"),
                 card("car", "Car"),
                 card("food", "Food"),
+                card("toy", "Toy"),
                 card("outside", "Outside"),
-                card("something-scary", "Scary thing")
+                card("something-scary", "Scary thing"),
+                card("screen", "Screen")
             ]),
             card("hear", "I hear", prompt: "What do you hear?", options: [
                 card("music", "Music"),
-                card("loud", "Loud sound"),
                 card("voice", "Voice"),
-                card("quiet", "Quiet")
+                card("loud", "Loud sound"),
+                card("quiet", "Quiet"),
+                card("my-name", "My name"),
+                card("tv", "TV")
             ])
         ]
     )

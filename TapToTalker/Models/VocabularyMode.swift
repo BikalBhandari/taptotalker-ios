@@ -20,9 +20,9 @@ enum VocabularyMode: String, CaseIterable, Codable, Identifiable, Sendable {
     var detail: String {
         switch self {
         case .simple: return "5 home choices, up to 3 steps"
-        case .intermediate: return "Full board, up to 3 steps"
+        case .intermediate: return "Up to 9 choices per screen, 3 steps"
         case .guided: return "6 choices per screen, up to 3 steps"
-        case .advanced: return "Full board with detail cards, up to 4 steps"
+        case .advanced: return "Up to 9 choices per screen, detail cards, 4 steps"
         }
     }
 
@@ -42,12 +42,15 @@ enum VocabularyMode: String, CaseIterable, Codable, Identifiable, Sendable {
         }
     }
 
-    /// Caps visible cards on the current screen. `nil` means no cap.
-    var screenLimit: Int? {
+    /// Absolute max tiles on any board screen (keeps the grid readable on iPad).
+    static let maxTilesPerScreen = 9
+
+    /// Caps visible cards on the current screen.
+    var screenLimit: Int {
         switch self {
         case .simple: return 5
         case .guided: return 6
-        case .intermediate, .advanced: return nil
+        case .intermediate, .advanced: return Self.maxTilesPerScreen
         }
     }
 

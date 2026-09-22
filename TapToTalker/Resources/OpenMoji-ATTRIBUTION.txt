@@ -1,0 +1,8 @@
+OpenMoji
+https://openmoji.org
+
+These emoji graphics are from OpenMoji and are licensed under
+Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0):
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Full license text: OpenMoji-LICENSE.txt
