@@ -12,15 +12,6 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             blue: 0.97,
             alpha: 1
         )
-
-        NotificationCenter.default.addObserver(
-            forName: UIScene.didActivateNotification,
-            object: nil,
-            queue: .main
-        ) { _ in
-            LandscapeLaunch.enforce(reason: "sceneDidActivate")
-        }
-
         return true
     }
 
@@ -28,6 +19,6 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         supportedInterfaceOrientationsFor window: UIWindow?
     ) -> UIInterfaceOrientationMask {
-        .landscape
+        .all
     }
 }

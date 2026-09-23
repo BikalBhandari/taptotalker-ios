@@ -3,18 +3,27 @@ import SwiftUI
 /// Speak + live phrase readout + clear while a message is being built.
 /// The text box shows full selected labels — helpful when card text is short or truncated.
 struct PhraseBarView: View {
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
     let phrase: String
     let canClear: Bool
     let onClear: () -> Void
     let onSpeak: () -> Void
 
+    private var isCompact: Bool { horizontalSizeClass == .compact }
+    private var phraseFontSize: CGFloat { isCompact ? 26 : 34 }
+    private var controlSize: CGFloat { isCompact ? 48 : 56 }
+    private var phraseMinHeight: CGFloat { isCompact ? 52 : 64 }
+    private var horizontalPadding: CGFloat { isCompact ? 12 : 18 }
+    private var verticalPadding: CGFloat { isCompact ? 8 : 12 }
+
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: isCompact ? 8 : 12) {
             Button(action: onSpeak) {
                 Label("Speak", systemImage: "speaker.wave.2.fill")
                     .font(.title3.weight(.bold))
                     .labelStyle(.iconOnly)
-                    .frame(width: 56, height: 56)
+                    .frame(width: controlSize, height: controlSize)
             }
             .buttonStyle(.borderedProminent)
             .disabled(phrase.isEmpty)
@@ -26,24 +35,24 @@ struct PhraseBarView: View {
             Button("Clear", systemImage: "xmark.circle", action: onClear)
                 .font(.title3.weight(.bold))
                 .disabled(!canClear)
-                .frame(minWidth: AACTheme.minTouch, minHeight: 56)
+                .frame(minWidth: AACTheme.minTouch, minHeight: controlSize)
         }
         .padding(.horizontal, AACTheme.outerPadding)
-        .padding(.vertical, 10)
+        .padding(.vertical, isCompact ? 6 : 10)
         .background(AACTheme.boardBackground)
         .accessibilityElement(children: .contain)
     }
 
     private var phraseBox: some View {
         Text(phrase.isEmpty ? "Your message…" : phrase)
-            .font(.system(size: 34, weight: .bold, design: .rounded))
+            .font(.system(size: phraseFontSize, weight: .bold, design: .rounded))
             .foregroundStyle(phrase.isEmpty ? AACTheme.cardLabel.opacity(0.45) : AACTheme.cardLabel)
             .lineLimit(2)
             .minimumScaleFactor(0.55)
             .multilineTextAlignment(.leading)
-            .frame(maxWidth: .infinity, minHeight: 64, alignment: .leading)
-            .padding(.horizontal, 18)
-            .padding(.vertical, 12)
+            .frame(maxWidth: .infinity, minHeight: phraseMinHeight, alignment: .leading)
+            .padding(.horizontal, horizontalPadding)
+            .padding(.vertical, verticalPadding)
             .background(
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(Color.white.opacity(0.95))
