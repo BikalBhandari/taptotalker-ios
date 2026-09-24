@@ -26,7 +26,19 @@ jobs:
         # macos-15 runners ship without an iOS Simulator runtime for Xcode 16.4,
         # so -showdestinations lists no iPads unless we install one first.
       - name: Install iOS Simulator runtime
-        run: xcodebuild -downloadPlatform iOS
+        run: |
+          set -euo pipefail
+          xcodebuild -runFirstLaunch
+          # First attempt often fails with "Unable to connect to simulator"
+          # while CoreSimulatorService boots — retry a few times.
+          for attempt in 1 2 3; do
+            if xcodebuild -downloadPlatform iOS; then
+              exit 0
+            fi
+            echo "downloadPlatform attempt ${attempt} failed; retrying in 20s"
+            sleep 20
+          done
+          exit 1
 
       - name: Resolve iPad Simulator destination
         id: sim
