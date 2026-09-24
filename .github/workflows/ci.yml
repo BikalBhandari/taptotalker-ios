@@ -23,22 +23,46 @@ jobs:
       - name: Show Xcode
         run: xcodebuild -version
 
+        # Fresh runners haven't booted CoreSimulator yet — without this kick,
+        # -showdestinations returns zero simulators and -downloadPlatform fails
+        # with "Unable to connect to simulator" (actions/runner-images#12862).
+      - name: Warm up CoreSimulator
+        run: xcrun simctl list > /dev/null
+
+      - name: Install iOS Simulator runtime if missing
+        run: |
+          set -euo pipefail
+          if xcodebuild -project TapToTalker.xcodeproj -scheme TapToTalker -showdestinations 2>/dev/null | grep -q "name:iPad"; then
+            echo "iPad Simulator already available"
+            exit 0
+          fi
+          for attempt in 1 2 3; do
+            if xcodebuild -downloadPlatform iOS; then
+              exit 0
+            fi
+            echo "downloadPlatform attempt ${attempt} failed; retrying in 20s"
+            sleep 20
+          done
+          exit 1
+
       - name: Resolve iPad Simulator destination
         id: sim
         run: |
           set -euo pipefail
-          DEST=$(
+          # -showdestinations prints key:value, but -destination needs key=value —
+          # extract just the UDID and use id=<uuid>, which is unambiguous.
+          SIM_ID=$(
             xcodebuild -project TapToTalker.xcodeproj -scheme TapToTalker -showdestinations 2>/dev/null \
-              | sed -n 's/.*{ \(platform:iOS Simulator,.*name:iPad[^}]*\) }.*/\1/p' \
+              | sed -n '/name:iPad/ s/.*id:\([0-9A-Fa-f-]\{36\}\).*/\1/p' \
               | head -1
           )
-          if [ -z "${DEST}" ]; then
+          if [ -z "${SIM_ID}" ]; then
             echo "No iPad Simulator destination found"
             xcodebuild -project TapToTalker.xcodeproj -scheme TapToTalker -showdestinations || true
             exit 1
           fi
-          echo "destination=${DEST}" >> "$GITHUB_OUTPUT"
-          echo "Using destination: ${DEST}"
+          echo "destination=id=${SIM_ID}" >> "$GITHUB_OUTPUT"
+          echo "Using destination: id=${SIM_ID}"
 
       - name: Build and test
         run: |

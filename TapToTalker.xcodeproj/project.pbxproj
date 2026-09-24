@@ -24,7 +24,6 @@
 		948B0CE9680145D995421F01 /* Views/AACCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D69C7F3E43542B98ECD8284 /* Views/AACCardButton.swift */; };
 		9979D28FDD004233B81C4AB9 /* Theme/AACTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310AB2828040445DA6D59A9A /* Theme/AACTheme.swift */; };
 		A1B2C3D4E5F60718293A4B50 /* Theme/OpenMoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B51 /* Theme/OpenMoji.swift */; };
-		E5F60718293A4B50C1A2B3D4 /* Theme/LandscapeLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F60718293A4B50C1A2B3D5 /* Theme/LandscapeLaunch.swift */; };
 		A1B2C3D4E5F60718293A4B52 /* Resources/OpenMoji-ATTRIBUTION.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B53 /* Resources/OpenMoji-ATTRIBUTION.txt */; };
 		A1B2C3D4E5F60718293A4B54 /* Resources/OpenMoji-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B55 /* Resources/OpenMoji-LICENSE.txt */; };
 		99C89351EA3242F3A7E8AFE7 /* Views/BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679666A3F5C24A4C80A3E476 /* Views/BoardView.swift */; };
@@ -57,7 +56,6 @@
 		3C9E6014D0F26B3C1A8E4D33 /* Views/Onboarding/OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Onboarding/OnboardingView.swift; sourceTree = "<group>"; };
 		310AB2828040445DA6D59A9A /* Theme/AACTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme/AACTheme.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60718293A4B51 /* Theme/OpenMoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme/OpenMoji.swift; sourceTree = "<group>"; };
-		E5F60718293A4B50C1A2B3D5 /* Theme/LandscapeLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme/LandscapeLaunch.swift; sourceTree = "<group>"; };
 		A1B2C3D4E5F60718293A4B53 /* Resources/OpenMoji-ATTRIBUTION.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resources/OpenMoji-ATTRIBUTION.txt"; sourceTree = "<group>"; };
 		A1B2C3D4E5F60718293A4B55 /* Resources/OpenMoji-LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Resources/OpenMoji-LICENSE.txt"; sourceTree = "<group>"; };
 		3C3F888135404DF18015283B /* TapToTalkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToTalkerTests.swift; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 				0913C581E70546F1A4027284 /* Models/VocabularyMode.swift */,
 				310AB2828040445DA6D59A9A /* Theme/AACTheme.swift */,
 				A1B2C3D4E5F60718293A4B51 /* Theme/OpenMoji.swift */,
-				E5F60718293A4B50C1A2B3D5 /* Theme/LandscapeLaunch.swift */,
 				A1B2C3D4E5F60718293A4B53 /* Resources/OpenMoji-ATTRIBUTION.txt */,
 				A1B2C3D4E5F60718293A4B55 /* Resources/OpenMoji-LICENSE.txt */,
 				FB85B895621D4E99A8CCCF68 /* Data/DefaultVocabulary.swift */,
@@ -265,7 +262,6 @@
 				7A71CD2D3629403390C941AC /* Models/VocabularyMode.swift in Sources */,
 				9979D28FDD004233B81C4AB9 /* Theme/AACTheme.swift in Sources */,
 				A1B2C3D4E5F60718293A4B50 /* Theme/OpenMoji.swift in Sources */,
-				E5F60718293A4B50C1A2B3D4 /* Theme/LandscapeLaunch.swift in Sources */,
 				93884A0D44A9459682F3FF12 /* Data/DefaultVocabulary.swift in Sources */,
 				92CA7EF34D084E69BB993924 /* Data/PersistenceStore.swift in Sources */,
 				948B0CE9680145D995421F01 /* Views/AACCardButton.swift in Sources */,
@@ -335,8 +331,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,8 +382,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

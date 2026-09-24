@@ -90,4 +90,45 @@ struct TapToTalkerTests {
         let visible = session.visibleOptions(mode: .guided)
         #expect(visible.map(\.id) == ["mom", "dad", "brother", "sister", "grandma", "grandpa"])
     }
+
+    @Test func columnCountLandscapeWideUsesThree() {
+        let cols = AACTheme.columnCount(
+            optionCount: 9,
+            width: 1180,
+            height: 820,
+            mode: .advanced
+        )
+        #expect(cols == 3)
+    }
+
+    @Test func columnCountPortraitDefaultsToTwo() {
+        let cols = AACTheme.columnCount(
+            optionCount: 9,
+            width: 820,
+            height: 1180,
+            mode: .advanced
+        )
+        #expect(cols == 2)
+    }
+
+    @Test func columnCountNarrowWidthCapsAtTwo() {
+        let cols = AACTheme.columnCount(
+            optionCount: 9,
+            width: 320,
+            height: 600,
+            mode: .advanced
+        )
+        #expect(cols == 2)
+    }
+
+    @Test func columnCountShortCanvasWidensTowardThree() {
+        // Portrait path starts at 2, but very short height should widen to keep tile height.
+        let cols = AACTheme.columnCount(
+            optionCount: 9,
+            width: 820,
+            height: 200,
+            mode: .advanced
+        )
+        #expect(cols == 3)
+    }
 }
