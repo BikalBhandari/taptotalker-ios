@@ -23,14 +23,19 @@ jobs:
       - name: Show Xcode
         run: xcodebuild -version
 
-        # macos-15 runners ship without an iOS Simulator runtime for Xcode 16.4,
-        # so -showdestinations lists no iPads unless we install one first.
-      - name: Install iOS Simulator runtime
+        # Fresh runners haven't booted CoreSimulator yet — without this kick,
+        # -showdestinations returns zero simulators and -downloadPlatform fails
+        # with "Unable to connect to simulator" (actions/runner-images#12862).
+      - name: Warm up CoreSimulator
+        run: xcrun simctl list > /dev/null
+
+      - name: Install iOS Simulator runtime if missing
         run: |
           set -euo pipefail
-          xcodebuild -runFirstLaunch
-          # First attempt often fails with "Unable to connect to simulator"
-          # while CoreSimulatorService boots — retry a few times.
+          if xcodebuild -project TapToTalker.xcodeproj -scheme TapToTalker -showdestinations 2>/dev/null | grep -q "name:iPad"; then
+            echo "iPad Simulator already available"
+            exit 0
+          fi
           for attempt in 1 2 3; do
             if xcodebuild -downloadPlatform iOS; then
               exit 0
