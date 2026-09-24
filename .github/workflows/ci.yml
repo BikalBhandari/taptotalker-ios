@@ -49,18 +49,20 @@ jobs:
         id: sim
         run: |
           set -euo pipefail
-          DEST=$(
+          # -showdestinations prints key:value, but -destination needs key=value —
+          # extract just the UDID and use id=<uuid>, which is unambiguous.
+          SIM_ID=$(
             xcodebuild -project TapToTalker.xcodeproj -scheme TapToTalker -showdestinations 2>/dev/null \
-              | sed -n 's/.*{ \(platform:iOS Simulator,.*name:iPad[^}]*\) }.*/\1/p' \
+              | sed -n '/name:iPad/ s/.*id:\([0-9A-Fa-f-]\{36\}\).*/\1/p' \
               | head -1
           )
-          if [ -z "${DEST}" ]; then
+          if [ -z "${SIM_ID}" ]; then
             echo "No iPad Simulator destination found"
             xcodebuild -project TapToTalker.xcodeproj -scheme TapToTalker -showdestinations || true
             exit 1
           fi
-          echo "destination=${DEST}" >> "$GITHUB_OUTPUT"
-          echo "Using destination: ${DEST}"
+          echo "destination=id=${SIM_ID}" >> "$GITHUB_OUTPUT"
+          echo "Using destination: id=${SIM_ID}"
 
       - name: Build and test
         run: |
