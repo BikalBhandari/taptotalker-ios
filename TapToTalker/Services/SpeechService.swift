@@ -5,7 +5,9 @@ import Foundation
 final class SpeechService {
     static let shared = SpeechService()
 
-    private let synthesizer = AVSpeechSynthesizer()
+    /// Lazy: AVSpeechSynthesizer() boots the TTS subsystem and can block the main
+    /// thread for seconds, so don't create it until the first speak request.
+    private lazy var synthesizer = AVSpeechSynthesizer()
 
     private init() {}
 
