@@ -21,31 +21,44 @@ struct OnboardingView: View {
 
     var body: some View {
         GeometryReader { geo in
+            let useCompactChrome = geo.size.height > geo.size.width
+                || geo.size.width < 700
+
             ZStack {
                 atmosphere
 
                 VStack(spacing: 0) {
                     topBar
-                        .padding(.horizontal, 28)
+                        .padding(.horizontal, useCompactChrome ? 20 : 28)
                         .padding(.top, 16)
                         .padding(.bottom, 8)
 
-                    HStack(alignment: .top, spacing: 28) {
-                        sideRail
-                            .frame(width: min(220, geo.size.width * 0.22))
+                    if useCompactChrome {
+                        VStack(alignment: .leading, spacing: 16) {
+                            sideRailCompact
+                            stepContent(compact: true)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.bottom, 8)
+                    } else {
+                        HStack(alignment: .top, spacing: 28) {
+                            sideRail
+                                .frame(width: min(220, geo.size.width * 0.22))
 
-                        stepContent
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            stepContent(compact: false)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }
+                        .padding(.horizontal, 28)
+                        .padding(.bottom, 8)
                     }
-                    .padding(.horizontal, 28)
-                    .padding(.bottom, 8)
 
                     attributionCredit
-                        .padding(.horizontal, 28)
+                        .padding(.horizontal, useCompactChrome ? 20 : 28)
                         .padding(.top, 4)
 
                     footer
-                        .padding(.horizontal, 28)
+                        .padding(.horizontal, useCompactChrome ? 20 : 28)
                         .padding(.bottom, 18)
                         .padding(.top, 6)
                 }
@@ -129,52 +142,7 @@ struct OnboardingView: View {
     private var sideRail: some View {
         VStack(alignment: .leading, spacing: 14) {
             ForEach(Array(steps.enumerated()), id: \.offset) { index, item in
-                let isActive = index == step
-                let isDone = index < step
-
-                Button {
-                    guard index <= step else { return }
-                    withAnimation(.spring(response: 0.4, dampingFraction: 0.86)) {
-                        step = index
-                    }
-                } label: {
-                    HStack(spacing: 12) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                                .fill(isActive || isDone ? item.tint : Color.white.opacity(0.55))
-                                .frame(width: 44, height: 44)
-                                .shadow(color: isActive ? item.tint.opacity(0.45) : .clear, radius: 8, y: 3)
-
-                            Image(systemName: isDone && !isActive ? "checkmark" : item.symbol)
-                                .font(.system(size: 17, weight: .bold))
-                                .foregroundStyle(isActive || isDone ? AACTheme.cardLabel : .secondary)
-                        }
-
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("Step \(index + 1)")
-                                .font(.system(.caption, design: .rounded).weight(.semibold))
-                                .foregroundStyle(.secondary)
-                            Text(item.title)
-                                .font(.system(.body, design: .rounded).weight(.semibold))
-                                .foregroundStyle(AACTheme.cardLabel)
-                        }
-
-                        Spacer(minLength: 0)
-                    }
-                    .padding(10)
-                    .background(
-                        RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .fill(isActive ? Color.white.opacity(0.78) : Color.clear)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 18, style: .continuous)
-                            .strokeBorder(isActive ? item.tint.opacity(0.7) : .clear, lineWidth: 2)
-                    )
-                }
-                .buttonStyle(.plain)
-                .disabled(index > step)
-                .accessibilityLabel("Step \(index + 1): \(item.title)")
-                .accessibilityAddTraits(isActive ? [.isSelected, .isButton] : .isButton)
+                sideRailButton(index: index, item: item, compact: false)
             }
 
             Spacer(minLength: 0)
@@ -184,13 +152,85 @@ struct OnboardingView: View {
         .accessibilityLabel("Onboarding progress")
     }
 
+    private var sideRailCompact: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 10) {
+                ForEach(Array(steps.enumerated()), id: \.offset) { index, item in
+                    sideRailButton(index: index, item: item, compact: true)
+                }
+            }
+            .padding(.vertical, 2)
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("Onboarding progress")
+    }
+
+    private func sideRailButton(
+        index: Int,
+        item: (title: String, symbol: String, tint: Color),
+        compact: Bool
+    ) -> some View {
+        let isActive = index == step
+        let isDone = index < step
+
+        return Button {
+            guard index <= step else { return }
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.86)) {
+                step = index
+            }
+        } label: {
+            HStack(spacing: compact ? 8 : 12) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: compact ? 12 : 14, style: .continuous)
+                        .fill(isActive || isDone ? item.tint : Color.white.opacity(0.55))
+                        .frame(width: compact ? 36 : 44, height: compact ? 36 : 44)
+                        .shadow(color: isActive ? item.tint.opacity(0.45) : .clear, radius: 8, y: 3)
+
+                    Image(systemName: isDone && !isActive ? "checkmark" : item.symbol)
+                        .font(.system(size: compact ? 14 : 17, weight: .bold))
+                        .foregroundStyle(isActive || isDone ? AACTheme.cardLabel : .secondary)
+                }
+
+                if compact {
+                    Text(item.title)
+                        .font(.system(.subheadline, design: .rounded).weight(.semibold))
+                        .foregroundStyle(AACTheme.cardLabel)
+                } else {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Step \(index + 1)")
+                            .font(.system(.caption, design: .rounded).weight(.semibold))
+                            .foregroundStyle(.secondary)
+                        Text(item.title)
+                            .font(.system(.body, design: .rounded).weight(.semibold))
+                            .foregroundStyle(AACTheme.cardLabel)
+                    }
+
+                    Spacer(minLength: 0)
+                }
+            }
+            .padding(compact ? 8 : 10)
+            .background(
+                RoundedRectangle(cornerRadius: compact ? 14 : 18, style: .continuous)
+                    .fill(isActive ? Color.white.opacity(0.78) : Color.clear)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: compact ? 14 : 18, style: .continuous)
+                    .strokeBorder(isActive ? item.tint.opacity(0.7) : .clear, lineWidth: 2)
+            )
+        }
+        .buttonStyle(.plain)
+        .disabled(index > step)
+        .accessibilityLabel("Step \(index + 1): \(item.title)")
+        .accessibilityAddTraits(isActive ? [.isSelected, .isButton] : .isButton)
+    }
+
     @ViewBuilder
-    private var stepContent: some View {
+    private func stepContent(compact: Bool) -> some View {
         Group {
             switch step {
             case 0: levelStep
-            case 1: cardsStep
-            default: protectStep
+            case 1: cardsStep(compact: compact)
+            default: protectStep(compact: compact)
             }
         }
         .id(step)
@@ -294,7 +334,7 @@ struct OnboardingView: View {
 
     // MARK: - Step 2
 
-    private var cardsStep: some View {
+    private func cardsStep(compact: Bool) -> some View {
         VStack(alignment: .leading, spacing: 14) {
             stepIntro(
                 eyebrow: "Personalize · \(selectedMode.title)",
@@ -314,7 +354,10 @@ struct OnboardingView: View {
 
             ScrollView {
                 LazyVGrid(
-                    columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 4),
+                    columns: Array(
+                        repeating: GridItem(.flexible(), spacing: 12),
+                        count: compact ? 2 : 4
+                    ),
                     spacing: 12
                 ) {
                     ForEach(editableCardsInSegment) { card in
@@ -452,7 +495,7 @@ struct OnboardingView: View {
 
     // MARK: - Step 3
 
-    private var protectStep: some View {
+    private func protectStep(compact: Bool) -> some View {
         VStack(alignment: .leading, spacing: 16) {
             stepIntro(
                 eyebrow: "Caregiver tools",
@@ -460,7 +503,7 @@ struct OnboardingView: View {
                 detail: "A PIN locks caregiver settings. Google Drive sync is optional and reserved for a future backup."
             )
 
-            HStack(alignment: .top, spacing: 16) {
+            let panels = Group {
                 VStack(alignment: .leading, spacing: 14) {
                     labelRow(symbol: "lock.fill", tint: steps[2].tint, title: "Caregiver PIN")
 
@@ -511,8 +554,14 @@ struct OnboardingView: View {
                     Spacer(minLength: 0)
                 }
                 .padding(20)
-                .frame(maxWidth: .infinity, minHeight: 220, alignment: .leading)
+                .frame(maxWidth: .infinity, minHeight: compact ? 0 : 220, alignment: .leading)
                 .background(panelBackground(tint: steps[1].tint))
+            }
+
+            if compact {
+                VStack(alignment: .leading, spacing: 16) { panels }
+            } else {
+                HStack(alignment: .top, spacing: 16) { panels }
             }
         }
     }

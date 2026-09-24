@@ -15,9 +15,6 @@ struct RootView: View {
                 mainBoard
             }
         }
-        .onAppear {
-            LandscapeLaunch.enforce(reason: "RootView.onAppear")
-        }
         .animation(.easeInOut(duration: 0.25), value: app.needsOnboarding)
     }
 

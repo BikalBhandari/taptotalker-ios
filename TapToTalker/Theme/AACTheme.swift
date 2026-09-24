@@ -23,6 +23,7 @@ enum AACTheme {
     }
 
     /// Prefer fewer, larger tiles (AAC-friendly). Caps columns so cards stay wide.
+    /// Portrait defaults to 2 columns; landscape may use 3 when wide enough.
     /// Uses height when available so short canvases prefer more columns / fewer rows.
     static func columnCount(
         optionCount: Int,
@@ -30,9 +31,11 @@ enum AACTheme {
         height: CGFloat = .infinity,
         mode: VocabularyMode
     ) -> Int {
-        // Hard cap at 3 so landscape boards stay chunky touch targets.
+        let isPortrait = height.isFinite && height > width
         let maxByWidth: Int
-        if width >= 900 {
+        if isPortrait {
+            maxByWidth = 2
+        } else if width >= 900 {
             maxByWidth = 3
         } else {
             maxByWidth = 2

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct BoardView: View {
     @Environment(AppModel.self) private var app
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     @Bindable var session: CommunicationSession
 
     let onEditCard: (AACCard) -> Void
@@ -150,7 +151,7 @@ struct BoardView: View {
     }
 
     private func actionCards(includeSpeak: Bool, speakHint: String) -> some View {
-        HStack(spacing: AACTheme.gridSpacing) {
+        let cards = Group {
             if includeSpeak {
                 AACCardButton(
                     title: "Speak",
@@ -174,6 +175,14 @@ struct BoardView: View {
                 onEdit: nil
             )
             .accessibilityHint("Clears the message and returns to the home board")
+        }
+
+        return Group {
+            if horizontalSizeClass == .compact {
+                VStack(spacing: AACTheme.gridSpacing) { cards }
+            } else {
+                HStack(spacing: AACTheme.gridSpacing) { cards }
+            }
         }
         .padding(AACTheme.outerPadding)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
