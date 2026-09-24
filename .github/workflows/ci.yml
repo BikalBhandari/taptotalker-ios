@@ -23,6 +23,11 @@ jobs:
       - name: Show Xcode
         run: xcodebuild -version
 
+        # macos-15 runners ship without an iOS Simulator runtime for Xcode 16.4,
+        # so -showdestinations lists no iPads unless we install one first.
+      - name: Install iOS Simulator runtime
+        run: xcodebuild -downloadPlatform iOS
+
       - name: Resolve iPad Simulator destination
         id: sim
         run: |
